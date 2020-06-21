@@ -1,33 +1,33 @@
 package queue
 
-type SliceQueue struct {
+type ArrayQueue struct {
 	items    []int
 	length   uint
 	capacity uint
 }
 
-func NewSliceQueue(capacity uint) *SliceQueue {
-	return &SliceQueue{
+func NewArrayQueue(capacity uint) *ArrayQueue {
+	return &ArrayQueue{
 		items:    make([]int, 0, capacity),
 		length:   0,
 		capacity: capacity,
 	}
 }
 
-func (s *SliceQueue) Enqueue(elem int) bool {
-	if s.length == s.capacity {
+func (a *ArrayQueue) Enqueue(elem int) bool {
+	if a.length == a.capacity {
 		return false
 	}
-	s.items = append(s.items, elem)
-	s.length++
+	a.items = append(a.items, elem)
+	a.length++
 	return true
 }
 
-func (s *SliceQueue) Dequeue() (int, bool) {
-	if s.length != 0 {
-		result := s.items[0]
-		s.items = s.items[1:]
-		s.length--
+func (a *ArrayQueue) Dequeue() (int, bool) {
+	if a.length != 0 {
+		result := a.items[0]
+		a.items = a.items[1:]
+		a.length--
 		return result, true
 	}
 
