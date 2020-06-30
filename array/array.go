@@ -1,9 +1,8 @@
 package array
 
 import (
+	"errors"
 	"fmt"
-
-	"github.com/pkg/errors"
 )
 
 // 数组中数据为int类型
@@ -18,7 +17,7 @@ func NewArray(capacity uint) *Array {
 		return nil
 	}
 	return &Array{
-		data:   make([]int, capacity, capacity),
+		data:   make([]int, capacity),
 		length: 0,
 	}
 }
@@ -30,10 +29,7 @@ func (a *Array) Len() uint {
 
 // 判断数组是否越界
 func (a *Array) isIndexOutOfRange(index uint) bool {
-	if index > uint(cap(a.data)) {
-		return true
-	}
-	return false
+	return index > uint(cap(a.data))
 }
 
 // 通过索引查找数组
