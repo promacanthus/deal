@@ -15,8 +15,8 @@ type BinarySearchTree struct {
 	count uint
 }
 
-func NewBinarySearchTree() *BinarySearchTree {
-	return &BinarySearchTree{root: nil, count: 0}
+func NewBinarySearchTree(root *Node) *BinarySearchTree {
+	return &BinarySearchTree{root: root, count: 1}
 }
 
 func (b *BinarySearchTree) Search(value int) bool {
@@ -47,38 +47,29 @@ func search(root *Node, value int) *Node {
 }
 
 func (b *BinarySearchTree) Insert(value int) {
-	if value == b.root.data {
-		return
-	}
-	findPosition(b.root, value).left = NewNode(value)
+	insert(b.root, value)
 	b.count++
 }
 
-func findPosition(root *Node, value int) *Node {
-	if value > root.data {
-		if value < root.right.data {
-			if root.right.left == nil {
-				return root.right
-			} else {
-				findPosition(root.right.left, value)
-			}
-		} else if value > root.right.data {
-			findPosition(root.right.right, value)
-		}
-		return root.right
+func insert(root *Node, value int) {
+	if value == root.data {
+		return
 	} else {
-		if value < root.left.data {
-			if root.left.left == nil {
-				return root.left
+		if value < root.data {
+			if root.left == nil {
+				root.left = NewNode(value)
+				return
 			} else {
-				findPosition(root.left.left, value)
+				insert(root.left, value)
 			}
 		} else {
-			if value > root.left.data {
-				findPosition(root.left.right, value)
+			if root.right == nil {
+				root.right = NewNode(value)
+				return
+			} else {
+				insert(root.right, value)
 			}
 		}
-		return root.left
 	}
 }
 

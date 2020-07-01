@@ -44,8 +44,7 @@ func TestBinarySearchTree_Delete(t *testing.T) {
 }
 
 func TestBinarySearchTree_InOrder(t *testing.T) {
-	tree := NewBinarySearchTree()
-	tree.root = NewNode(1)
+	tree := NewBinarySearchTree(NewNode(1))
 	tree.root.left = NewNode(0)
 	tree.root.right = NewNode(2)
 
@@ -82,8 +81,7 @@ func TestBinarySearchTree_InOrder(t *testing.T) {
 }
 
 func TestBinarySearchTree_Max(t *testing.T) {
-	tree := NewBinarySearchTree()
-	tree.root = NewNode(1)
+	tree := NewBinarySearchTree(NewNode(1))
 	tree.root.left = NewNode(0)
 	tree.root.right = NewNode(2)
 	type fields struct {
@@ -119,8 +117,7 @@ func TestBinarySearchTree_Max(t *testing.T) {
 }
 
 func TestBinarySearchTree_Min(t *testing.T) {
-	tree := NewBinarySearchTree()
-	tree.root = NewNode(1)
+	tree := NewBinarySearchTree(NewNode(1))
 	tree.root.left = NewNode(0)
 	tree.root.right = NewNode(2)
 	type fields struct {
@@ -156,8 +153,7 @@ func TestBinarySearchTree_Min(t *testing.T) {
 }
 
 func TestBinarySearchTree_PostOrder(t *testing.T) {
-	tree := NewBinarySearchTree()
-	tree.root = NewNode(1)
+	tree := NewBinarySearchTree(NewNode(1))
 	tree.root.left = NewNode(0)
 	tree.root.right = NewNode(2)
 
@@ -194,8 +190,7 @@ func TestBinarySearchTree_PostOrder(t *testing.T) {
 }
 
 func TestBinarySearchTree_PreOrder(t *testing.T) {
-	tree := NewBinarySearchTree()
-	tree.root = NewNode(1)
+	tree := NewBinarySearchTree(NewNode(1))
 	tree.root.left = NewNode(0)
 	tree.root.right = NewNode(2)
 
@@ -232,8 +227,7 @@ func TestBinarySearchTree_PreOrder(t *testing.T) {
 }
 
 func TestBinarySearchTree_Search(t *testing.T) {
-	tree := NewBinarySearchTree()
-	tree.root = NewNode(1)
+	tree := NewBinarySearchTree(NewNode(1))
 	tree.root.left = NewNode(0)
 	tree.root.right = NewNode(2)
 	type fields struct {
@@ -278,6 +272,41 @@ func TestBinarySearchTree_Search(t *testing.T) {
 			if got := b.Search(tt.args.value); got != tt.want {
 				t.Errorf("Search() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func TestBinarySearchTree_Insert(t *testing.T) {
+	type fields struct {
+		root  *Node
+		count uint
+	}
+	type args struct {
+		value int
+	}
+	tests := []struct {
+		name   string
+		fields fields
+		args   args
+	}{
+		// TODO: Add test cases.
+		{
+			"1",
+			fields{
+				root:  NewNode(1),
+				count: 1,
+			},
+			args{value: 1},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			b := &BinarySearchTree{
+				root:  tt.fields.root,
+				count: tt.fields.count,
+			}
+			b.Insert(tt.args.value)
+			b.PreOrder()
 		})
 	}
 }
