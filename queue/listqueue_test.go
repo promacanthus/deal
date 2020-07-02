@@ -18,6 +18,7 @@ func TestListQueue_Dequeue(t *testing.T) {
 		want1  bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -51,6 +52,7 @@ func TestListQueue_Enqueue(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -75,6 +77,7 @@ func TestNewListQueue(t *testing.T) {
 		want *ListQueue
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

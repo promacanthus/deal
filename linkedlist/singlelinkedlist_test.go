@@ -11,6 +11,7 @@ func TestNewSingleLinkedList(t *testing.T) {
 		want *SingleLinkedList
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -32,6 +33,7 @@ func TestSingleLinkedList_ExistCycle(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -61,6 +63,7 @@ func TestSingleLinkedList_FindByIndex(t *testing.T) {
 		want   *SingleNode
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -90,6 +93,7 @@ func TestSingleLinkedList_First(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -120,6 +124,7 @@ func TestSingleLinkedList_InsertAfter(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -150,6 +155,7 @@ func TestSingleLinkedList_InsertBefore(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -179,6 +185,7 @@ func TestSingleLinkedList_Last(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -208,6 +215,7 @@ func TestSingleLinkedList_Remove(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -235,7 +243,7 @@ func TestSingleLinkedList_Reverse(t *testing.T) {
 		{
 			"test_reverse",
 			fields{
-				head:   l.head,
+				head:   nil,
 				length: 2,
 			},
 		},

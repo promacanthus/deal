@@ -19,6 +19,7 @@ func TestCircularQueue_Dequeue(t *testing.T) {
 		want1  bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -56,6 +57,7 @@ func TestCircularQueue_Enqueue(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -82,6 +84,7 @@ func TestNewCircularQueue(t *testing.T) {
 		want *CircularQueue
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

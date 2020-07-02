@@ -19,6 +19,7 @@ func TestListStack_Pop(t *testing.T) {
 		want1  bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -54,6 +55,7 @@ func TestListStack_Push(t *testing.T) {
 		want   bool
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -79,6 +81,7 @@ func TestNewListStack(t *testing.T) {
 		want *ListStack
 	}{
 		// TODO: Add test cases.
+		{},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
