@@ -38,33 +38,36 @@ func (h *Heap) Delete() (int, bool) {
 	if h.count == 0 {
 		return -1, false
 	}
-	res := heapify(h)
+	h.items[1], h.items[h.count] = h.items[h.count], h.items[1]
+	h.count--
+	res := heapify(h, h.count)
 	return res, true
 }
 
-func heapify(h *Heap) int {
+func heapify(h *Heap, count uint) int {
+	for i := uint(1); i < count/2; {
+		maxIndex := i
+		if h.items[i] < h.items[i*2] {
+			maxIndex = i * 2
+		}
 
-	h.items[1], h.items[h.count] = h.items[h.count], h.items[1]
+		if i*2+1 <= count && h.items[maxIndex] < h.items[i*2+1] {
+			maxIndex = i*2 + 1
+		}
 
-	index := uint(1)
-	leftChild := 2 * index
-	rightChild := leftChild + 1
-
-	for leftChild < h.count && rightChild < h.count {
-		if h.items[index] < h.items[leftChild] {
-			h.items[index], h.items[leftChild] = h.items[leftChild], h.items[index]
-			index = leftChild
-		} else if h.items[index] < h.items[rightChild] {
-			h.items[index], h.items[rightChild] = h.items[rightChild], h.items[index]
-			index = rightChild
-		} else {
+		if maxIndex == i {
 			break
 		}
-		leftChild = 2 * index
-		rightChild = leftChild + 1
-	}
 
-	res := h.items[h.count]
-	h.count--
+		h.items[i], h.items[maxIndex] = h.items[maxIndex], h.items[i]
+	}
+	res := h.items[count]
 	return res
+}
+
+func (h *Heap) Sort() {
+
+	for i := uint(1); i <= h.count; i++ {
+		h.Delete()
+	}
 }

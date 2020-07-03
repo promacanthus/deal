@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var origin = []int{0, 33, 27, 21, 16, 13, 15, 9, 5, 6, 7, 8, 1, 2}
+var origin = []int{0, 33, 27, 21, 16, 13, 15, 19, 5, 6, 7, 8, 1, 2, 12}
 
 func TestHeap_Delete(t *testing.T) {
 	type fields struct {
@@ -115,6 +115,36 @@ func TestHeap_Insert(t *testing.T) {
 				count: tt.fields.count,
 			}
 			h.Insert(tt.args.v)
+			fmt.Println(h.items)
+		})
+	}
+}
+
+func TestHeap_Sort(t *testing.T) {
+	type fields struct {
+		items []int
+		count uint
+	}
+	tests := []struct {
+		name   string
+		fields fields
+	}{
+		// TODO: Add test cases.
+		{
+			"1",
+			fields{
+				items: origin,
+				count: 14,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			h := &Heap{
+				items: tt.fields.items,
+				count: tt.fields.count,
+			}
+			h.Sort()
 			fmt.Println(h.items)
 		})
 	}
