@@ -6,7 +6,6 @@ import (
 )
 
 // 数组中数据为int类型
-
 type Array struct {
 	data   []int
 	length uint
