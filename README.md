@@ -10,3 +10,22 @@ go get github.com/Promacanthus/deal
 ```
 
 ## Data Structures
+
+- Array
+- LinkedList
+- Heap
+- Queue
+- HashTable
+- BinaryTree
+- Stack
+- SkipList
+- Graph
+- TrieTree
+
+## Algorithms
+
+- Recurse
+- Sort
+- BinarySearch
+- Search
+- Hash
