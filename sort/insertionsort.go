@@ -10,12 +10,15 @@ func InsertionSort(list []int) {
 		val := list[i]
 		j := i - 1
 		for ; j >= 0; j-- {
-			if val < list[j] { // 数据比较，加上等号算法会变成不稳定排序
-				list[j+1] = list[j] // 数据移动
+			// 数据比较，保证算法稳定相等时不交换
+			if val < list[j] {
+				// 数据移动
+				list[j+1] = list[j]
 			} else {
 				break
 			}
 		}
-		list[j+1] = val // 数据插入
+		// 数据插入
+		list[j+1] = val
 	}
 }
