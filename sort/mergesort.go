@@ -13,7 +13,7 @@ func mergeSort(list []int, head, tail int) []int {
 		return list
 	}
 
-	mid := (head + tail) / 2
+	mid := head + (tail-head)/2
 	mergeSort(list, head, mid)
 	mergeSort(list, mid+1, tail)
 
