@@ -1,3 +1,3 @@
-module github.com/promacanthus/deal
+module deal
 
 go 1.14
