@@ -10,7 +10,7 @@ func SelectionSort(list []int) {
 		min := i
 		for j := i + 1; j < n; j++ {
 			// 查找最小的元素
-			if min > list[j] {
+			if list[min] > list[j] {
 				min = j // 记录最小值
 			}
 		}
