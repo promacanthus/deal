@@ -58,35 +58,3 @@ func printQueens(result [8]int) {
 	}
 	fmt.Println()
 }
-
-// 0-1背包问题---回溯
-
-var (
-	maxW = 0
-	mem  = [5][10]bool{}
-)
-
-// cw 表示当前重量
-// i 表示考察到第i个物品
-// w 表示背包承重
-// items 表示每个物品的重量
-// n 表示物品个数
-func packages(i, cw int, items []int, n, w int) {
-	// cw==w 表示背包满了
-	// i==n 表示物品考察完了
-	if cw == w || i == n {
-		if cw > maxW {
-			maxW = cw
-			return
-		}
-	}
-	if mem[i][cw] {
-		return
-	}
-	mem[i][cw] = true
-	packages(i+1, cw, items, n, w)
-	// 超过背包最大承重，则停止放入
-	if cw+items[i] <= w {
-		packages(i+1, cw+items[i], items, n, w)
-	}
-}
