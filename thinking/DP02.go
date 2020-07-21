@@ -1,6 +1,6 @@
 package thinking
 
-// 0-1背包问题---动态规划
+// 0-1背包问题---动态规划（二维状态转移表）
 // 通过当前阶段的状态集合推导下一个阶段的状态集合
 
 var states = [5][10]bool{} // 状态转移表
@@ -32,22 +32,22 @@ func dp02(weight []int, n, w int) int {
 
 	// 动态规划状态转移
 	for i := 1; i < n; i++ {
-
-		for j := 0; j <= w-weight[i]; j++ {
-			// 放入第i个物品
-			if states[i-1][j] {
-				states[i][j+weight[i]] = true
-			}
-		}
-
+		// 不放入第i个物品
 		for j := 0; j <= w; j++ {
-			// 不放入第i个物品
 			if states[i-1][j] {
 				states[i][j] = states[i-1][j]
 			}
 		}
+
+		// 放入第i个物品
+		for j := 0; j <= w-weight[i]; j++ {
+			if states[i-1][j] {
+				states[i][j+weight[i]] = true
+			}
+		}
 	}
 
+	// 输出结果，也就是状态转移表的右下角
 	for i := w; i >= 0; i-- {
 		if states[n-1][i] {
 			return i
