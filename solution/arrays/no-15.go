@@ -1,6 +1,4 @@
-package example
-
-// leetcode 第15题：三数之和
+package arrays
 
 import "sort"
 
@@ -15,9 +13,10 @@ func threeSum(nums []int) [][]int {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
-		// c 对应的指针初始指向数组的最右端
+
 		target := -1 * nums[i]
 		// 枚举 b
+		// c 对应的指针初始指向数组的最右端
 		for j, k := i+1, n-1; j < n; j++ {
 			// 需要和上一次枚举的数不相同
 			if j > i+1 && nums[j] == nums[j-1] {
