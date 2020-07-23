@@ -7,7 +7,6 @@ type Heap struct {
 
 func NewHeap() *Heap {
 	items := make([]int, 1)
-	items[0] = 0
 	return &Heap{items: items, count: 0}
 }
 

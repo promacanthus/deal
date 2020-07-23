@@ -14,22 +14,21 @@ func NewArrayQueue(capacity uint) *ArrayQueue {
 	}
 }
 
-func (a *ArrayQueue) Enqueue(elem int) bool {
-	if a.length == a.capacity {
+func (q *ArrayQueue) Enqueue(v int) bool {
+	if q.length == q.capacity {
 		return false
 	}
-	a.items = append(a.items, elem)
-	a.length++
+	q.items = append(q.items, v)
+	q.length++
 	return true
 }
 
-func (a *ArrayQueue) Dequeue() (int, bool) {
-	if a.length != 0 {
-		result := a.items[0]
-		a.items = a.items[1:]
-		a.length--
-		return result, true
+func (q *ArrayQueue) Dequeue() (int, bool) {
+	if q.length == 0 {
+		return -1, false
 	}
-
-	return -1, false
+	result := q.items[0]
+	q.items = q.items[1:]
+	q.length--
+	return result, true
 }

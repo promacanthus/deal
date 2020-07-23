@@ -8,23 +8,21 @@ type ListQueue struct {
 }
 
 func NewListQueue(capacity uint) *ListQueue {
-	return &ListQueue{
-		items:    list.New(),
-		capacity: capacity}
+	return &ListQueue{items: list.New(), capacity: capacity}
 }
 
-func (l *ListQueue) Enqueue(n int) bool {
-	if uint(l.items.Len()) == l.capacity {
+func (q *ListQueue) Enqueue(v int) bool {
+	if uint(q.items.Len()) == q.capacity {
 		return false
 	}
-	l.items.PushBack(n)
+	q.items.PushBack(v)
 	return true
 }
 
-func (l *ListQueue) Dequeue() (int, bool) {
-	if l.items.Len() != 0 {
-		element := l.items.Front()
-		return element.Value.(int), true
+func (q *ListQueue) Dequeue() (int, bool) {
+	if q.items.Len() != 0 {
+		v := q.items.Front()
+		return v.Value.(int), true
 	}
 	return -1, false
 }

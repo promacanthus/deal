@@ -14,20 +14,20 @@ func NewCircularQueue(capacity uint) *CircularQueue {
 	}
 }
 
-func (c *CircularQueue) Enqueue(elem int) bool {
-	if (c.tail+1)%c.capacity != c.head {
-		c.items[c.tail] = elem
-		c.tail = (c.tail + 1) % c.capacity
+func (q *CircularQueue) Enqueue(v int) bool {
+	if (q.tail+1)%q.capacity != q.head {
+		q.items[q.tail] = v
+		q.tail = (q.tail + 1) % q.capacity
 		return true
 	}
 	return false
 }
 
-func (c *CircularQueue) Dequeue() (int, bool) {
-	if c.head != c.tail {
-		elem := c.items[c.head]
-		c.head = (c.head + 1) % c.capacity
-		return elem, true
+func (q *CircularQueue) Dequeue() (int, bool) {
+	if q.head != q.tail {
+		v := q.items[q.head]
+		q.head = (q.head + 1) % q.capacity
+		return v, true
 	}
 	return -1, false
 }

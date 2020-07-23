@@ -11,19 +11,14 @@ type ListStack struct {
 }
 
 func NewListStack(n uint) *ListStack {
-	return &ListStack{
-		items:    list.New(),
-		length:   0,
-		capacity: n,
-	}
+	return &ListStack{items: list.New(), length: 0, capacity: n}
 }
 
-func (s *ListStack) Push(n int) bool {
+func (s *ListStack) Push(v int) bool {
 	if s.length == s.capacity {
 		return false
 	}
-
-	s.items.PushBack(n)
+	s.items.PushBack(v)
 	s.length++
 	return true
 }
