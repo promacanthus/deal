@@ -1,8 +1,28 @@
 package linkedlist
 
+/*
+	链表是一种递归结构，它或为空（nil）或是指向一个节点（node）的指针，
+	该节点含有一个泛型的元素和一个指向另一条链表的指针。
+
+	1.理解指针
+    2.警惕指针丢失和内存泄漏
+	3.利用哨兵简化实现难度
+	4.注意边界条件处理
+	5.举例画图辅助思考
+*/
+
 import (
 	"fmt"
 )
+
+type SingleNode struct {
+	Value int
+	next  *SingleNode
+}
+
+func NewSingleNode(value int) *SingleNode {
+	return &SingleNode{Value: value, next: nil}
+}
 
 type SingleLinkedList struct {
 	head   *SingleNode
@@ -10,15 +30,17 @@ type SingleLinkedList struct {
 }
 
 func NewSingleLinkedList() *SingleLinkedList {
-	return &SingleLinkedList{head: NewSingleNode(nil), length: 0}
+	return &SingleLinkedList{head: NewSingleNode(0), length: 0}
 }
 
 // 在指定节点后插入
-func (s *SingleLinkedList) InsertAfter(p *SingleNode, v interface{}) bool {
+func (s *SingleLinkedList) InsertAfter(p *SingleNode, v int) bool {
 	if p == nil {
 		return false
 	}
+
 	node := NewSingleNode(v)
+	// 保存原来的next指针
 	oldNext := p.next
 	p.next = node
 	node.next = oldNext
@@ -32,14 +54,14 @@ func (s *SingleLinkedList) First(v int) bool {
 }
 
 // 在指定节点前插入
-func (s *SingleLinkedList) InsertBefore(p *SingleNode, v interface{}) bool {
+func (s *SingleLinkedList) InsertBefore(p *SingleNode, v int) bool {
 	// p不为空，不为头指针
 	if p == nil || p == s.head {
 		return false
 	}
 
-	cur := s.head.next
 	pre := s.head
+	cur := s.head.next
 
 	// 链表存取其他节点（非头指针）
 	if cur == nil {
@@ -65,11 +87,9 @@ func (s *SingleLinkedList) InsertBefore(p *SingleNode, v interface{}) bool {
 // 在链表尾部插入
 func (s *SingleLinkedList) Last(v int) bool {
 	cur := s.head
-
 	for cur.next != nil {
 		cur = cur.next
 	}
-
 	return s.InsertAfter(cur, v)
 }
 
@@ -84,7 +104,6 @@ func (s *SingleLinkedList) FindByIndex(index uint) *SingleNode {
 	for i := uint(0); i < index; i++ {
 		cur = cur.next
 	}
-
 	return cur
 }
 
@@ -94,8 +113,8 @@ func (s *SingleLinkedList) Remove(p *SingleNode) bool {
 		return false
 	}
 
-	cur := s.head.next
 	pre := s.head
+	cur := s.head.next
 
 	// 寻找p的位置
 	for cur != nil {
@@ -106,13 +125,18 @@ func (s *SingleLinkedList) Remove(p *SingleNode) bool {
 		cur = cur.next
 	}
 
-	pre.next = cur.next
-	p = nil
+	if cur.next != nil {
+		pre.next = cur.next
+		p = nil
+	} else {
+		pre.next = nil
+	}
+
 	s.length--
 	return true
 }
 
-//Print 打印单链表
+// Print 打印单链表
 func (s *SingleLinkedList) Print() {
 	format := ""
 	cur := s.head.next
@@ -152,7 +176,6 @@ func (s *SingleLinkedList) ExistCycle() bool {
 
 	walker := s.head
 	runner := s.head
-
 	for runner.next != nil || runner.next.next != nil {
 		walker = walker.next
 		runner = runner.next.next
@@ -168,7 +191,6 @@ func (s *SingleLinkedList) Merge(sll *SingleLinkedList) *SingleLinkedList {
 	if s.head.next == nil {
 		return sll
 	}
-
 	if sll.head.next == nil {
 		return s
 	}
