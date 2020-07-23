@@ -1,6 +1,7 @@
 package array
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -225,7 +226,7 @@ func TestArray_Print(t *testing.T) {
 				data:   tt.fields.data,
 				length: tt.fields.length,
 			}
-			a.Print()
+			a.String()
 		})
 	}
 }
@@ -263,6 +264,36 @@ func TestArray_isIndexOutOfRange(t *testing.T) {
 			if got := a.isIndexOutOfRange(tt.args.index); got != tt.want {
 				t.Errorf("isIndexOutOfRange() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func TestArray_expansion(t *testing.T) {
+	type fields struct {
+		data   []int
+		length uint
+	}
+	tests := []struct {
+		name   string
+		fields fields
+	}{
+		// TODO: Add test cases.
+		{
+			"1",
+			fields{
+				data:   make([]int, 1),
+				length: 1,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			a := &Array{
+				data:   tt.fields.data,
+				length: tt.fields.length,
+			}
+			a.expand()
+			fmt.Println(cap(a.data))
 		})
 	}
 }

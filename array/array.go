@@ -40,9 +40,10 @@ func (a *Array) Find(index uint) (int, error) {
 }
 
 //  插入数据到索引index
-func (a Array) Insert(index uint, v int) error {
+func (a *Array) Insert(index uint, v int) error {
 	if a.length == uint(cap(a.data)) {
-		return errors.New("fully array")
+		a.expand()
+		return errors.New("fully arrays")
 	}
 
 	if index != a.length && a.isIndexOutOfRange(index) {
@@ -50,9 +51,13 @@ func (a Array) Insert(index uint, v int) error {
 	}
 
 	// 移动数组，空出位置
+	// 方法一：循环
 	for i := a.length; i > index; i-- {
 		a.data[i] = a.data[i-1]
 	}
+	// 方法二：copy
+	copy(a.data[index:], a.data[index+1:])
+	a.data = a.data[:a.length-1]
 
 	// 将待插入位置的数据放到数组末尾，空出位置
 	// 保证数组有序，则不能用这个方法
@@ -84,6 +89,14 @@ func (a *Array) Delete(index uint) (int, error) {
 	// a.data[index] = a.data[a.length-1]
 	a.length--
 	return v, nil
+}
+
+func (a *Array) expand() {
+	b := make([]int, a.length*2)
+	for i := uint(0); i < a.length; i++ {
+		b[i] = a.data[i]
+	}
+	a.data = b
 }
 
 // 打印数组
