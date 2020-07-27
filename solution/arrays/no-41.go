@@ -49,3 +49,18 @@ func dmp(res []int, n, index, point int) int {
 	}
 	return dmp(res, n, index+1, point+1)
 }
+
+func firstMissingPositive2(nums []int) int {
+	n := len(nums)
+	for i := 0; i < n; i++ {
+		for nums[i] > 0 && nums[i] <= n && nums[nums[i]-1] != nums[i] {
+			nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+		}
+	}
+	for i := 0; i < n; i++ {
+		if nums[i] != i+1 {
+			return i + 1
+		}
+	}
+	return n + 1
+}
