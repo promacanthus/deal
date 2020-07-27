@@ -170,20 +170,20 @@ func (s *SingleLinkedList) Reverse() {
 
 // 判断是否存在环
 func (s *SingleLinkedList) ExistCycle() bool {
-	if s.head.next == nil {
+	if s.head == nil || s.head.next == nil {
 		return false
 	}
 
 	walker := s.head
-	runner := s.head
-	for runner.next != nil || runner.next.next != nil {
+	runner := s.head.next
+	for walker != runner {
+		if runner == nil || runner.next == nil {
+			return false
+		}
 		walker = walker.next
 		runner = runner.next.next
-		if walker == runner {
-			return true
-		}
 	}
-	return false
+	return true
 }
 
 // 合并两个有序链表
