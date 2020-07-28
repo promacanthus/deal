@@ -1,4 +1,4 @@
-package solution
+package DP
 
 func isMatch(s string, p string) bool {
 	sLength := len(s)
