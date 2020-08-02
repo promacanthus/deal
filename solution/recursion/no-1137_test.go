@@ -34,7 +34,7 @@ func Test_tribonacci(t *testing.T) {
 	}
 }
 
-func Test_tribonacciIteration(t *testing.T) {
+func Test_tribonacciDP(t *testing.T) {
 	type args struct {
 		n int
 	}
@@ -57,7 +57,7 @@ func Test_tribonacciIteration(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tribonacciIteration(tt.args.n); got != tt.want {
+			if got := tribonacciDP(tt.args.n); got != tt.want {
 				t.Errorf("tribonacciIteration() = %v, want %v", got, tt.want)
 			}
 		})
