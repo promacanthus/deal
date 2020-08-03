@@ -129,9 +129,9 @@ func TestBinarySearchLE(t *testing.T) {
 			"test binary search less or equal",
 			args{
 				list:  []int{3, 5, 6, 8, 9, 10},
-				value: 7,
+				value: 11,
 			},
-			2,
+			5,
 		},
 	}
 	for _, tt := range tests {

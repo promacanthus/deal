@@ -24,7 +24,7 @@ func BinarySearchRecursive(list []int, value int) bool {
 }
 
 func bsr(list []int, low, high, value int) bool {
-	if low > high {
+	if low >= high {
 		return false
 	}
 	mid := low + ((high - low) >> 1)
@@ -114,7 +114,7 @@ func BinarySearchLE(list []int, value int) int {
 		if list[mid] > value {
 			high = mid - 1
 		} else {
-			if mid == 0 || list[mid+1] > value {
+			if mid == len(list)-1 || list[mid+1] > value {
 				return mid
 			} else {
 				low = mid + 1
