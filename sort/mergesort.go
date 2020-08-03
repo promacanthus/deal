@@ -13,6 +13,7 @@ func mergeSort(list []int, head, tail int) []int {
 		return list
 	}
 
+	// 找到数组中点进行划分
 	mid := head + (tail-head)/2
 	mergeSort(list, head, mid)
 	mergeSort(list, mid+1, tail)
