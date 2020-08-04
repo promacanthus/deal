@@ -7,7 +7,12 @@ type Node struct {
 }
 
 func NewNode(value int) *Node {
-	return &Node{data: value, left: nil, right: nil, flag: false}
+	return &Node{
+		data:  value,
+		left:  nil,
+		right: nil,
+		flag:  false,
+	}
 }
 
 type BinarySearchTree struct {
@@ -77,8 +82,13 @@ func (b *BinarySearchTree) Delete(value int) bool {
 	if b.count == 0 {
 		return false
 	}
-	search(b.root, value).flag = true
-	return true
+
+	target := search(b.root, value)
+	if target != nil {
+		target.flag = true
+		return true
+	}
+	return false
 }
 
 func (b *BinarySearchTree) Max() *Node {
@@ -90,7 +100,6 @@ func (b *BinarySearchTree) Max() *Node {
 	for child.right != nil {
 		child = child.right
 	}
-
 	return child
 }
 
@@ -103,7 +112,6 @@ func (b *BinarySearchTree) Min() *Node {
 	for child.left != nil {
 		child = child.left
 	}
-
 	return child
 }
 
@@ -111,7 +119,7 @@ func (b *BinarySearchTree) PreOrder() []int {
 	if b.count == 0 {
 		return nil
 	}
-	res := make([]int, 0, b.count)
+	res := make([]int, 0)
 	preOrder(b.root, &res)
 	return res
 }
@@ -149,7 +157,6 @@ func (b *BinarySearchTree) PostOrder() []int {
 	if b.count == 0 {
 		return nil
 	}
-
 	res := make([]int, 0)
 	postOrder(b.root, &res)
 	return res
@@ -159,7 +166,6 @@ func postOrder(root *Node, res *[]int) {
 	if root.left != nil {
 		postOrder(root.left, res)
 	}
-
 	if root.right != nil {
 		postOrder(root.right, res)
 	}
