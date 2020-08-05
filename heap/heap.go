@@ -43,6 +43,9 @@ func (h *Heap) Push(v int) {
 func up(h *Heap, i int) {
 	for {
 		p := (i - 1) / 2 // parent
+		// 退出条件：
+		// 1、当前已经是根节点
+		// 2、当前节点不需要和父节点交换
 		if p == i || !h.less(i, p) {
 			break
 		}
@@ -64,19 +67,22 @@ func down(h *Heap, root int, n int) {
 	i := root
 	for {
 		l := 2*i + 1 // left
+		// 退出条件：当前节点是最后一个节点
 		if l >= n || l < 0 {
 			break
 		}
-		max := l
+		outstanding := l
 		r := l + 1 // right
+		// 寻找子节点中较大或较大的那个
 		if r < n && h.less(r, l) {
-			max = r
+			outstanding = r
 		}
-		if !h.less(max, i) {
+		// 退出条件：当前节点不需要和子节点中杰出的那个交换
+		if !h.less(outstanding, i) {
 			break
 		}
-		h.swap(i, max)
-		i = max
+		h.swap(i, outstanding)
+		i = outstanding
 	}
 }
 
