@@ -1,7 +1,16 @@
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/Promacanthus/deal)](https://goreportcard.com/report/github.com/Promacanthus/deal) [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Promacanthus/deal/blob/master/LICENSE)
 # deal
+
 DEAL（Data structurEs And aLgorithms）
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/Promacanthus/deal)](https://goreportcard.com/report/github.com/Promacanthus/deal) [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Promacanthus/deal/blob/master/LICENSE)
+
+- [deal](#deal)
+  - [Install](#install)
+  - [Complexity](#complexity)
+    - [Big O Complexity](#big-o-complexity)
+    - [Common Data Structure Operations](#common-data-structure-operations)
+    - [Array Sorting Algorithms](#array-sorting-algorithms)
 
 ## Install
 
@@ -9,23 +18,18 @@ DEAL（Data structurEs And aLgorithms）
 go get github.com/Promacanthus/deal
 ```
 
-## Data Structures
+## Complexity
 
-- Array
-- LinkedList
-- Heap
-- Queue
-- HashTable
-- BinaryTree
-- Stack
-- SkipList
-- Graph
-- TrieTree
+Image Source，click[here](https://www.bigocheatsheet.com/)。
 
-## Algorithms
+### Big O Complexity
 
-- Recurse
-- Sort
-- BinarySearch
-- Search
-- Hash
+![image](Big-O-Complexity-Chart.png)
+
+### Common Data Structure Operations
+
+![image](Common-Data-Structure-Operations.png)
+
+### Array Sorting Algorithms
+
+![image](Array-Sorting-Algorithms.png)
