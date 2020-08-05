@@ -5,11 +5,13 @@ import (
 	"fmt"
 )
 
+// 无向图
 type Graph struct {
 	Vertexes []*list.List
 	count    uint
 }
 
+// v表示图中顶点数量
 func NewGraph(v uint) *Graph {
 	graph := &Graph{
 		Vertexes: make([]*list.List, v),
@@ -28,6 +30,8 @@ func (g *Graph) AddEdge(s, t int) {
 	g.Vertexes[t].PushBack(s)
 }
 
+// 从起点s到终点t的路径
+// s和t是按层序遍历的顶点位置
 func (g *Graph) BFS(s, t int) {
 	if s == t {
 		return
@@ -70,6 +74,7 @@ func prints(prev []int, s int, t int) {
 	fmt.Printf("%d  ", t)
 }
 
+// 从起点s到终点t的路径
 func (g *Graph) DFS(s, t int) {
 	if s == t {
 		return
@@ -90,7 +95,6 @@ func (g *Graph) DFS(s, t int) {
 func dfs(g *Graph, visited *[]bool, prev *[]int, s, t int) {
 
 	(*visited)[s] = true
-
 	if s == t {
 		return
 	}
