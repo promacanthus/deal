@@ -12,21 +12,21 @@ func Test_reverseWords(t *testing.T) {
 		want string
 	}{
 		// TODO: Add test cases.
-		// {
-		// 	"1",
-		// 	args{"the sky is blue"},
-		// 	"blue is sky the",
-		// },
-		// {
-		// 	"2",
-		// 	args{"  hello world!  "},
-		// 	"world! hello",
-		// },
-		// {
-		// 	"3",
-		// 	args{"a good   example"},
-		// 	"example good a",
-		// },
+		{
+			"1",
+			args{"the sky is blue"},
+			"blue is sky the",
+		},
+		{
+			"2",
+			args{"  hello world!  "},
+			"world! hello",
+		},
+		{
+			"3",
+			args{"a good   example"},
+			"example good a",
+		},
 		{
 			"4",
 			args{" "},
