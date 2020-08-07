@@ -5,11 +5,11 @@ import "math"
 // 最小路径和
 
 // 回溯+缓存
-func minPathSum1(grid [][]int) int {
-	return min(grid, 0, 0)
+func minPathSum(grid [][]int) int {
+	return helper(grid, 0, 0)
 }
 
-func min(grid [][]int, i, j int) int {
+func helper(grid [][]int, i, j int) int {
 	if i == len(grid) || j == len(grid[0]) {
 		return math.MaxInt64
 	}
@@ -17,10 +17,10 @@ func min(grid [][]int, i, j int) int {
 	if i == len(grid)-1 && j == len(grid[0])-1 {
 		return grid[i][j]
 	}
-	return grid[i][j] + minimum(min(grid, i, j+1), min(grid, i+1, j))
+	return grid[i][j] + min(helper(grid, i, j+1), helper(grid, i+1, j))
 }
 
-func minimum(a, b int) int {
+func min(a, b int) int {
 	if a >= b {
 		return b
 	}
@@ -28,7 +28,7 @@ func minimum(a, b int) int {
 }
 
 // 动态规划
-func minPathSum2(grid [][]int) int {
+func minPathSumDP(grid [][]int) int {
 	iLength := len(grid)
 	if iLength < 1 {
 		return 0
@@ -52,7 +52,7 @@ func minPathSum2(grid [][]int) int {
 			} else if i != 0 && j == 0 {
 				dp[i][j] = dp[i-1][j] + grid[i][j]
 			} else if i != 0 && j != 0 {
-				dp[i][j] = minimum(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+				dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
 			}
 		}
 	}
