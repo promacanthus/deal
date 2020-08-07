@@ -115,7 +115,7 @@ func TestSingleLinkedList_InsertAfter(t *testing.T) {
 	}
 	type args struct {
 		p *SingleNode
-		v interface{}
+		v int
 	}
 	tests := []struct {
 		name   string
@@ -146,7 +146,7 @@ func TestSingleLinkedList_InsertBefore(t *testing.T) {
 	}
 	type args struct {
 		p *SingleNode
-		v interface{}
+		v int
 	}
 	tests := []struct {
 		name   string
