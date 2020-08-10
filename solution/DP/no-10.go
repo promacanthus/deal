@@ -1,31 +1,33 @@
 package DP
 
 func isMatch(s string, p string) bool {
-	sLength := len(s)
-	pLength := len(p)
-	if sLength < 1 || pLength < 1 {
-		return false
+	m, n := len(s), len(p)
+	matches := func(i, j int) bool {
+		if i == 0 {
+			return false
+		}
+		if p[j-1] == '.' {
+			return true
+		}
+		return s[i-1] == p[j-1]
 	}
 
-	sBytes := []byte(s)
-	pBytes := []byte(p)
-
-	for i := 0; i < pLength; i++ {
-		if pBytes[i] >= 'a' && pBytes[i] <= 'z' {
-			if sBytes[i] == pBytes[i] {
-				continue
-			}
-		} else {
-			switch pBytes[i] {
-			case '.':
-				continue
-			case '*':
-				if i == 0 {
-					continue
+	dp := make([][]bool, m+1)
+	for i := 0; i < len(dp); i++ {
+		dp[i] = make([]bool, n+1)
+	}
+	dp[0][0] = true
+	for i := 0; i <= m; i++ {
+		for j := 1; j <= n; j++ {
+			if p[j-1] == '*' {
+				dp[i][j] = dp[i][j] || dp[i][j-2]
+				if matches(i, j-1) {
+					dp[i][j] = dp[i][j] || dp[i-1][j]
 				}
+			} else if matches(i, j) {
+				dp[i][j] = dp[i][j] || dp[i-1][j-1]
 			}
 		}
-
 	}
-	return true
+	return dp[m][n]
 }
