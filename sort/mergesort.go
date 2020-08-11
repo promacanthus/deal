@@ -23,29 +23,58 @@ func mergeSort(list []int, head, tail int) []int {
 }
 
 func merge(list []int, head, mid, tail int) []int {
-	ret := make([]int, tail-head+1)
+	res := make([]int, 0)
 
-	i, j, k := head, mid+1, 0
+	i, j := head, mid+1
 
-	for ; i <= mid && j <= tail; k++ {
+	for i <= mid && j <= tail {
 		if list[i] <= list[j] {
-			ret[k] = list[i]
+			res = append(res, list[i])
 			i++
 		} else {
-			ret[k] = list[j]
+			res = append(res, list[j])
 			j++
 		}
 	}
 
-	for ; i <= mid; i++ {
-		ret[k] = list[i]
-		k++
+	if i <= mid {
+		res = append(res, list[i:mid+1]...)
 	}
+	if j <= tail {
+		res = append(res, list[j:tail]...)
+	}
+	copy(list[head:tail+1], res)
+	return res
+}
 
-	for ; j <= tail; j++ {
-		ret[k] = list[j]
-		k++
+func MergeSort1(nums []int) []int {
+	return mergeSort1(nums)
+}
+func mergeSort1(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
 	}
-	copy(list[head:tail+1], ret)
-	return ret
+	// 分治法：divide 分为两段,合并两段数据
+	return merge1(mergeSort1(nums[:len(nums)/2]), mergeSort1(nums[len(nums)/2:]))
+
+}
+func merge1(left, right []int) (result []int) {
+	// 两边数组合并游标
+	l := 0
+	r := 0
+	// 注意不能越界
+	for l < len(left) && r < len(right) {
+		// 谁小合并谁
+		if left[l] > right[r] {
+			result = append(result, right[r])
+			r++
+		} else {
+			result = append(result, left[l])
+			l++
+		}
+	}
+	// 剩余部分合并
+	result = append(result, left[l:]...)
+	result = append(result, right[r:]...)
+	return
 }

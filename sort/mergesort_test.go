@@ -90,3 +90,28 @@ func Test_mergeSort(t *testing.T) {
 		})
 	}
 }
+
+func TestMergeSort1(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+		{
+			"1",
+			args{[]int{6, 1, 3, 4, 2, 5}},
+			[]int{1, 2, 3, 4, 5, 6},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := MergeSort1(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("MergeSort1() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
