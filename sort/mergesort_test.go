@@ -5,6 +5,11 @@ import (
 	"testing"
 )
 
+func Benchmark(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		MergeSort([]int{6, 5, 4, 3, 2, 1})
+	}
+}
 func TestMergeSort(t *testing.T) {
 	type args struct {
 		list []int
