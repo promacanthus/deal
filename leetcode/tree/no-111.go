@@ -35,10 +35,8 @@ func minDepthBFS(root *TreeNode) int {
 	find := false
 	depth := 0
 	for len(queue) > 0 {
-		size := len(queue)
 		// 控制层数，在一个循环中入队的是在同一层
-		for size > 0 {
-			curNode := queue[0]
+		for _, curNode := range queue {
 			queue = queue[1:]
 			if curNode.Left == nil && curNode.Right == nil {
 				find = true
@@ -50,7 +48,6 @@ func minDepthBFS(root *TreeNode) int {
 			if curNode.Right != nil {
 				queue = append(queue, curNode.Right)
 			}
-			size--
 		}
 		depth++
 		if find {

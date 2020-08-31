@@ -1,7 +1,7 @@
 package recursion
 
 // recursion & cache
-var tmp = make(map[int]int, 0)
+var tmp = make(map[int]int)
 
 func tribonacci(n int) int {
 	if n == 0 {
@@ -11,16 +11,24 @@ func tribonacci(n int) int {
 		return 1
 	}
 
-	ans, ok := tmp[n]
-	if ok {
+	if ans, ok := tmp[n]; ok {
 		return ans
 	}
 	tmp[n] = tribonacci(n-3) + tribonacci(n-2) + tribonacci(n-1)
+
 	return tmp[n]
 }
 
 // dynamic programming
 func tribonacciDP(n int) int {
+	if n == 0 {
+		return 0
+	}
+	// n<3 dp数组会初始化失败
+	if n < 3 {
+		return 1
+	}
+
 	DP := make([]int, n+1)
 	DP[0] = 0
 	DP[1] = 1

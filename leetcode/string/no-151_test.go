@@ -13,6 +13,11 @@ func Test_reverseWords(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{
+			"0",
+			args{"1 "},
+			"1",
+		},
+		{
 			"1",
 			args{"the sky is blue"},
 			"blue is sky the",
@@ -35,7 +40,7 @@ func Test_reverseWords(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := reverseWordsBuiltIn(tt.args.s); got != tt.want {
+			if got := reverseWordss(tt.args.s); got != tt.want {
 				t.Errorf("reverseWords() = %v, want %v", got, tt.want)
 			}
 		})

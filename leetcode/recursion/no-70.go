@@ -8,8 +8,7 @@ func climbStairs(n int) int {
 		return 1
 	}
 
-	s, ok := res[n]
-	if ok {
+	if s, ok := res[n]; ok {
 		return s
 	} else {
 		res[n] = climbStairs(n-1) + climbStairs(n-2)

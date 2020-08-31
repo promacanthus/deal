@@ -67,3 +67,38 @@ func reverseWordsBuiltIn(s string) string {
 
 	return res[:len(res)-1]
 }
+
+func reverseWordss(s string) string {
+	n := len(s)
+	if n < 1 {
+		return ""
+	}
+
+	res := make([]string, 0)
+	word := make([]byte, 0)
+	for i := 0; i < n; i++ {
+		if s[i] == ' ' {
+			if len(word) == 0 {
+				continue
+			}
+			res = append(res, string(word))
+			word = make([]byte, 0)
+		} else {
+			word = append(word, s[i])
+		}
+	}
+
+	if len(word) != 0 {
+		res = append(res, string(word))
+	}
+	if len(res) == 0 {
+		return ""
+	}
+
+	ans := ""
+	for i := len(res) - 1; i >= 0; i-- {
+		ans += res[i]
+		ans += " "
+	}
+	return ans[:len(ans)-1]
+}

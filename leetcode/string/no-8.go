@@ -83,3 +83,57 @@ finish:
 	}
 	return atoi
 }
+
+func myAtoi2(str string) int {
+	n := len(str)
+	if n < 1 {
+		return 0
+	}
+
+	var symbol byte
+	res := make([]byte, 0)
+	for i := 0; i < n; i++ {
+		if 'A' < str[i] && str[i] < 'z' {
+			break
+		}
+		if str[i] == ' ' {
+			if len(res) == 0 {
+				continue
+			} else {
+				break
+			}
+		}
+		if str[i] == '+' || str[i] == '-' {
+			if len(res) == 0 {
+				symbol = str[i]
+				continue
+			} else {
+				break
+			}
+		}
+		res = append(res, str[i])
+	}
+
+	if len(res) == 0 {
+		return 0
+	}
+
+	ans := 0
+	for i, j := len(res)-1, 0; i >= 0; i-- {
+		ans += int(res[i]-'0') * int(math.Pow10(j))
+		j++
+	}
+
+	if symbol == '+' {
+		if ans > math.MaxInt32 {
+			return math.MaxInt32
+		}
+		return ans
+	} else {
+		tmp := 0 - ans
+		if tmp < math.MinInt32 {
+			return math.MinInt32
+		}
+		return tmp
+	}
+}

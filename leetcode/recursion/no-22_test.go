@@ -15,42 +15,6 @@ func Test_generateParenthesis(t *testing.T) {
 		want []string
 	}{
 		// TODO: Add test cases.
-		// {
-		// 	"1",
-		// 	args{3},
-		// 	[]string{
-		// 		"((()))",
-		// 		"(()())",
-		// 		"(())()",
-		// 		"()(())",
-		// 		"()()()",
-		// 	},
-		// },
-		{
-			"2",
-			args{1},
-			[]string{"()"},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := generateParenthesis(tt.args.n); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("generateParenthesis() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_generateParenthesisDP(t *testing.T) {
-	type args struct {
-		n int
-	}
-	tests := []struct {
-		name string
-		args args
-		want []string
-	}{
-		// TODO: Add test cases.
 		{
 			"1",
 			args{3},
@@ -62,11 +26,16 @@ func Test_generateParenthesisDP(t *testing.T) {
 				"()()()",
 			},
 		},
+		{
+			"2",
+			args{1},
+			[]string{"()"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := generateParenthesisDP(tt.args.n); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("generateParenthesisDP() = %v, want %v", got, tt.want)
+			if got := generateParenthesis(tt.args.n); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("generateParenthesis() = %v, want %v", got, tt.want)
 			}
 		})
 	}

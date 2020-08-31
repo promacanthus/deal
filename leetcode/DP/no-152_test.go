@@ -12,14 +12,14 @@ func Test_maxProduct(t *testing.T) {
 		want int
 	}{
 		// TODO: Add test cases.
-		{
-			"1",
-			args{[]int{2, 3, -2, 4}},
-			6,
-		},
+		// {
+		// 	"1",
+		// 	args{[]int{2, 3, -2, 4}},
+		// 	6,
+		// },
 		{
 			"2",
-			args{[]int{-2, 0, -1}},
+			args{[]int{-2, 3, -4}},
 			0,
 		},
 		{
