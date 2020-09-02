@@ -13,6 +13,11 @@ func Test_firstMissingPositive(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{
+			"-1",
+			args{[]int{1}},
+			1,
+		},
+		{
 			"0",
 			args{[]int{4, 3, 4, 1, 1, 4, 1, 4}},
 			2,
@@ -65,7 +70,7 @@ func Test_firstMissingPositive(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := firstMissingPositive(tt.args.nums); got != tt.want {
+			if got := firstMissingPositive3(tt.args.nums); got != tt.want {
 				t.Errorf("firstMissingPositive() = %v, want %v", got, tt.want)
 			}
 		})
