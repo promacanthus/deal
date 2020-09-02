@@ -41,9 +41,9 @@ func (s *SingleLinkedList) InsertAfter(p *SingleNode, v int) bool {
 
 	node := NewSingleNode(v)
 	// 保存原来的next指针
-	oldNext := p.next
+	next := p.next
 	p.next = node
-	node.next = oldNext
+	node.next = next
 	s.length++
 	return true
 }
