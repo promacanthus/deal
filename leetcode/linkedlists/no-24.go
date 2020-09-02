@@ -6,12 +6,15 @@ func swapPairsRecursion(head *ListNode) *ListNode {
 	}
 	first := head
 	second := head.Next
+
 	first.Next = swapPairsRecursion(second.Next)
 	second.Next = first
+
 	return second
 }
 
 func swapPairsIteration(head *ListNode) *ListNode {
+
 	dump := &ListNode{
 		Val:  -1,
 		Next: head,
