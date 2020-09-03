@@ -14,12 +14,14 @@ func insertionSortList(head *ListNode) *ListNode {
 	head.Next = nil
 	for insert != nil {
 		prev := dump
+		cur := dump.Next
 		next := insert.Next
 		// 寻找插入点
-		for prev.Next != nil && prev.Next.Val <= insert.Val {
+		for cur != nil && cur.Val <= insert.Val {
 			prev = prev.Next
+			cur = cur.Next
 		}
-		insert.Next = prev.Next
+		insert.Next = cur
 		prev.Next = insert
 		insert = next
 	}
