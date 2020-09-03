@@ -18,13 +18,13 @@ func Test_insertionSortList(t *testing.T) {
 		{
 			"1",
 			args{&ListNode{
-				Val: 4,
+				Val: 1,
 				Next: &ListNode{
 					Val: 2,
 					Next: &ListNode{
-						Val: 1,
+						Val: 3,
 						Next: &ListNode{
-							Val:  3,
+							Val:  4,
 							Next: nil,
 						},
 					},
