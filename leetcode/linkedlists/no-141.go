@@ -1,5 +1,7 @@
 package linkedlists
 
+import "time"
+
 // Definition for singly-linked list.
 type ListNode struct {
 	Val  int
@@ -38,4 +40,26 @@ func hasCycle(head *ListNode) bool {
 		slow = slow.Next
 	}
 	return false
+}
+
+func hasCycle1(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+	after := time.After(time.Microsecond)
+	res := make(chan bool)
+
+	go func() {
+		for head != nil {
+			head = head.Next
+		}
+		res <- false
+	}()
+
+	select {
+	case <-res:
+		return false
+	case <-after:
+		return true
+	}
 }
