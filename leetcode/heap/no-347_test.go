@@ -20,9 +20,9 @@ func Test_topKFrequent(t *testing.T) {
 			"1",
 			args{
 				nums: []int{3, 0, 1, 0},
-				k:    1,
+				k:    3,
 			},
-			[]int{0},
+			[]int{0, 1, 3},
 		},
 	}
 	for _, tt := range tests {

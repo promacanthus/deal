@@ -10,20 +10,17 @@ type item struct {
 	index    int // 记录对象在堆中的位置
 }
 
-type priorityQueue []item
+type priorityQueue []*item
 
-func (pq priorityQueue) Len() int { return len(pq) }
-
+func (pq priorityQueue) Len() int           { return len(pq) }
+func (pq priorityQueue) Less(i, j int) bool { return pq[i].priority > pq[j].priority }
 func (pq priorityQueue) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
 	pq[i].index = j
 	pq[j].index = i
 }
 
-func (pq priorityQueue) Less(i, j int) bool { return pq[i].priority > pq[j].priority }
-
-func (pq *priorityQueue) Push(x interface{}) { *pq = append(*pq, x.(item)) }
-
+func (pq *priorityQueue) Push(x interface{}) { *pq = append(*pq, x.(*item)) }
 func (pq *priorityQueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
@@ -45,16 +42,13 @@ func topKFrequent(nums []int, k int) []int {
 		dir[num]++
 	}
 	pq := new(priorityQueue)
-
 	for k, v := range dir {
-		*pq = append(*pq, item{value: k, priority: v})
+		heap.Push(pq, &item{value: k, priority: v})
 	}
-
-	heap.Init(pq)
 
 	res := make([]int, k)
 	for i := 0; i < k; i++ {
-		res[i] = heap.Pop(pq).(item).value
+		res[i] = heap.Pop(pq).(*item).value
 	}
 	return res
 }

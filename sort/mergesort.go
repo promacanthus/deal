@@ -48,15 +48,11 @@ func merge(list []int, head, mid, tail int) []int {
 }
 
 func MergeSort1(nums []int) []int {
-	return mergeSort1(nums)
-}
-func mergeSort1(nums []int) []int {
 	if len(nums) <= 1 {
 		return nums
 	}
 	// 分治法：divide 分为两段,合并两段数据
-	return merge1(mergeSort1(nums[:len(nums)/2]), mergeSort1(nums[len(nums)/2:]))
-
+	return merge1(MergeSort1(nums[:len(nums)/2]), MergeSort1(nums[len(nums)/2:]))
 }
 func merge1(left, right []int) (result []int) {
 	// 两边数组合并游标
